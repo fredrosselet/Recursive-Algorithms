@@ -21,7 +21,15 @@
 // countVowels('abcedfg') ->2
 
 var countVowels = function(str){
-
+  var count = 0;
+  if (str.length === 0) {
+    return count;
+  }
+  var vowels = ['a', 'e', 'i', 'o', 'u'];
+  if (vowels.indexOf(str[0].toLowerCase()) > - 1) {
+    count++;
+  }
+  return count += countVowels(str.slice(1));
 };
 
 ///////////////////////////////////////////////////////////////////////
@@ -35,7 +43,12 @@ var countVowels = function(str){
 // sumDigits(12) → 3
 
 var recursiveSum = function(n){
-
+  var str = n.toString();
+  if (str.length === 1) {
+    return Number(str);
+  }
+  var sum = Number(str[0]);
+  return sum += recursiveSum(str.slice(1));
 };
 
 ///////////////////////////////////////////////////////////////////////
@@ -48,7 +61,12 @@ var recursiveSum = function(n){
 // PowerOfTwo(9) -> false
 
 var isPowerOfTwo = function(n){
-
+  if (n === 1 || n === 2) {
+    return true;
+  } else if (n === 0 || n % 2 === 1) {
+    return false;
+  }
+  return isPowerOfTwo(n / 2);
 };
 
 ///////////////////////////////////////////////////////////////////////
@@ -64,8 +82,15 @@ var isPowerOfTwo = function(n){
 // (For example, if the initial investment is 1000 and the interest rate is 10 percent,
 // then after one year the investment will be worth 1100, after two years 1210, after three years 1331, etc.)
 
-var invest = function(amount){
-
+var invest = function(amount, rate, years){
+  if (amount === 0) {
+    return amount;
+  }
+  if (rate === 0 || years === 0) {
+    return amount;
+  }
+  amount += (amount * rate);
+  return invest(amount, rate, years - 1);
 };
 
 ///////////////////////////////////////////////////////////////////////
@@ -82,7 +107,14 @@ var invest = function(amount){
 //    printRangeUpDown(4, 10);
 //    console.logs: 4,5,6,7,8,9,10,9,8,7,6,5,4
 var printRangeUpDown = function(min, max){
+  if (min === max) {
+    console.log(min);
+    return;
+  }
 
+  console.log(min);
+  printRangeUpDown(min + 1, max);
+  console.log(min);
 };
 
 ///////////////////////////////////////////////////////////////////////
